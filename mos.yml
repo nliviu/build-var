@@ -1,0 +1,45 @@
+author: Liviu Nicolescu <nliviu@gmail.com>
+description: Select files using build_vars
+version: 1.0
+
+libs_version: ${mos.version}
+modules_version: ${mos.version}
+mongoose_os_version: ${mos.version}
+
+# Optional. List of tags for online search.
+tags:
+  - c
+
+# List of files / directories with C sources. No slashes at the end of dir names.
+sources:
+  - src
+
+config_schema:
+  - ["debug.level", 2]
+
+libs:
+  - origin: https://github.com/mongoose-os-libs/rpc-service-config
+  - origin: https://github.com/mongoose-os-libs/rpc-service-fs
+  - origin: https://github.com/mongoose-os-libs/rpc-uart
+
+# Used by the mos tool to catch mos binaries incompatible with this file format
+manifest_version: 2017-09-29
+
+filesystem:
+# This is a file common to all configs
+  - fs/common0
+
+build_vars:
+  FILES: 1
+
+conds:
+  - when: build_vars.FILES == "0"
+    apply:
+      filesystem:
+        - fs/f00
+        - fs/f01
+  - when: build_vars.FILES == "1"
+    apply:
+      filesystem:
+        - fs/f10
+        - fs/f11
