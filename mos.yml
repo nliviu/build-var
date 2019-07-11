@@ -1,5 +1,5 @@
-author: mongoose-os
-description: A Mongoose OS app skeleton
+author: Liviu Nicolescu <nliviu@gmail.com>
+description: Select files using build_vars
 version: 1.0
 
 libs_version: ${mos.version}
