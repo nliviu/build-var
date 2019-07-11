@@ -1,5 +1,5 @@
-author: Liviu Nicolescu <nliviu@gmail.com>
-description: Select files using build_vars
+author: mongoose-os
+description: A Mongoose OS app skeleton
 version: 1.0
 
 libs_version: ${mos.version}
@@ -18,6 +18,8 @@ config_schema:
   - ["debug.level", 2]
 
 libs:
+  - origin: https://github.com/mongoose-os-libs/boards
+  - origin: https://github.com/mongoose-os-libs/ca-bundle
   - origin: https://github.com/mongoose-os-libs/rpc-service-config
   - origin: https://github.com/mongoose-os-libs/rpc-service-fs
   - origin: https://github.com/mongoose-os-libs/rpc-uart
@@ -26,11 +28,12 @@ libs:
 manifest_version: 2017-09-29
 
 filesystem:
+  - fs\dummy    # workaround to make it work on windows. It also works on debian and Mac OS
 # This is a file common to all configs
   - fs/common0
 
 build_vars:
-  FILES: 1
+  FILES: 0
 
 conds:
   - when: build_vars.FILES == "0"
